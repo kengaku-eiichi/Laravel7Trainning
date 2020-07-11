@@ -2,8 +2,6 @@ version: '3'
 services:
     php74:
         build: ./php74
-        environment:
-            - MYSQL_SOCKET:/var/run/mysqld/mysqld.sock
         volumes:
             - .:/git/Laravel7Trainning
             - ./php74/conf/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf

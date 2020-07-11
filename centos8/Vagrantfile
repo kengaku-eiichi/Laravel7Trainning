@@ -75,5 +75,8 @@ Vagrant.configure("2") do |config|
       . /vagrant/selinux.sh
       . /vagrant/docker.sh
     }
+    [ -f /git/Laravel7Trainning/src/www/.env ] || {
+      cd /git/Laravel7Trainning/src/www && ln -s .env-dev .env
+    }
   SHELL
 end

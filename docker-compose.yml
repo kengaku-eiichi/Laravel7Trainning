@@ -25,17 +25,15 @@ services:
         ports:
             - 3306:3306
         environment: 
-            MYSQL_ROOT_PASSWORD: mypass
-            MYSQL_USER: mysqluser
-            MYSQL_PASSWORD: mysqlpass
+            MYSQL_ROOT_PASSWORD: p@ssw0rd
             MYSQL_DATABASE: docker_trainning
             TZ: 'Asia/Tokyo'
         volumes:
             - .:/git/Laravel7Trainning
-            - ./mysql/conf/default_authentication.cnf:/etc/mysql/conf.d/default_authentication.conf
             - ./mysql/sql:/docker-entrypoint-initdb.d
-            # - ./mysql/data:/var/lib/mysql
+            - ./mysql/data:/var/lib/mysql
             - mysql:/var/run/mysqld
+        command: --innodb-use-native-aio=0
 volumes:
     mysql:
     php-fpm:

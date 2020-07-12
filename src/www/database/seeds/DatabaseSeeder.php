@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
         );
         factory(App\User::class, 9)->create();
 
+        App\User::all()->each(function ($user) {
+            factory(App\Message::class, $user->id % 4)->create(['user_id' => $user->id]);
+        });
+
         factory(App\Admin::class)->create(
             ['username' => 'admin', 'password' => bcrypt('admin123')]
         );

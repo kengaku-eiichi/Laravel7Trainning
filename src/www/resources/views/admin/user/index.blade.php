@@ -12,28 +12,28 @@
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
         <td>{{ $user->messages_count }}</td>
-        <td><input type="button" class="del_btn" data-id="{{ $user->id }}" value="削除"></td>
+        <td><input type="button" class="del_btn" data-id="{{ $user->id }}" data-name="{{ $user->name }}" value="削除"></td>
     </tr>
     @endforeach
 </table>
 <script>
     $(function() {
-        function deleteUser(url, btn) {
-            $.ajax({
-                url: url,
-                method: 'post',
-                data: {
-                    _method: 'delete'
-                }
-            }).done(function() {
-                $(btn).closest('tr').remove()
-            }).fail(function(xhr, str1, str2) {
-                alert(str1, str2)
-            })
-        }
-        $('table').on('click', '.del_btn', function() {
-            var url = "{{ route('admin.user.delete', '') }}/" + $(this).data('id');
-            deleteUser(url, this);
+        $('table .del_btn').on('click', function() {
+            var $btn = $(this);
+            if (confirm($btn.data('name') + ' を削除します。よろしいですか？')) {
+                $.ajax({
+                    url: "{{ route('admin.user.delete', '') }}",
+                    method: 'post',
+                    data: {
+                        _method: 'delete',
+                        id: $btn.data('id')
+                    }
+                }).done(function() {
+                    $btn.closest('tr').remove()
+                }).fail(function(xhr, str1, str2) {
+                    alert(str2)
+                })
+            }
         })
         $.ajaxSetup({
             headers: {

@@ -14,9 +14,9 @@ class UserController extends Controller
         return
             view('admin.user.index', compact('users'));
     }
-    public function delete(User $user)
+    public function delete(Request $request)
     {
-        $user->delete();
+        User::findOrFail($request->input('id'))->delete();
         return ['success' => true];
     }
 }

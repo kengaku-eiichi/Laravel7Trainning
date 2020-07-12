@@ -29,7 +29,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function () {
         Route::get('logout', 'LoginController@logout')->name('logout');
         Route::get('', 'IndexController@index')->name('top');
 
-        Route::get('message', 'MessageController@index')->name('message.index');
+        Route::get('message', 'MessageController@index')->name('message');
         Route::get('message/create', 'MessageController@create')->name('message.create');
         Route::post('message/create', 'MessageController@store');
         Route::get('message/edit/{message}', 'MessageController@edit')->name('message.edit');

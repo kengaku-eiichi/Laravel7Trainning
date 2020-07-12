@@ -1,7 +1,6 @@
 @extends('layouts.admin')
-@section('contents')
+@section('content')
 <h1>メッセージ一覧</h1>
-<p><a href="{{ route('admin.message.create') }}">新規作成</a></p>
 <table border="1">
     <tr>
         <th>変更</th>
@@ -15,5 +14,7 @@
         <td>{{ $message->user->name }}</td>
         <td>{{ $message->title }}</td>
         <td>{{ Str::limit($message->content, 50) }}</td>
-    </tr> @endforeach
+    </tr>
+    @endforeach
 </table>
+@endsection

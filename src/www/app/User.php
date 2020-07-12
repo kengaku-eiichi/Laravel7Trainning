@@ -39,4 +39,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Message');
     }
+
+    public static function list()
+    {
+        return static::latest()->pluck('name', 'id');
+    }
 }

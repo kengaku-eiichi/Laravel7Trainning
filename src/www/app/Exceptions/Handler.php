@@ -52,4 +52,13 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    protected function unauthenticated($request, \Illuminate\Auth\AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['message' => $exception->getMessage()], 401);
+        }
+        $url = route(($guard = $exception->guards()[0]) ? "{$guard}.login" : 'login');
+        return redirect($url);
+    }
 }

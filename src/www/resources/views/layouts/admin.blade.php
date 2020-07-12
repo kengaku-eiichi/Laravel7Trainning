@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>管理者</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>

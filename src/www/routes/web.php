@@ -13,12 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('signup', 'SignupController@index')->name('signup.index');
 Route::post('signup', 'SignupController@postIndex');
 Route::get('signup/confirm', 'SignupController@confirm')->name('signup.confirm');
 Route::post('signup/confirm', 'SignupController@postConfirm');
 Route::get('signup/thanks', 'SignupController@thanks')->name('signup.thanks');
+
+Route::prefix('user')->namespace('User')->as('user.')->group(function () {
+    Route::middleware('guest:user')->group(function () {
+        Route::get('login', 'LoginController@showLoginForm')->name('login');
+        Route::post('login', 'LoginController@login');
+    });
+    Route::middleware('auth:user')->group(function () {
+        Route::get('', 'IndexController@index')->name('top');
+        Route::get('logout', 'LoginController@logout')->name('logout');
+
+        Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
+        Route::post('profile/edit', 'ProfileController@update');
+
+        Route::get('message', 'MessageController@index')->name('message');
+        Route::get('message/show/{message}', 'MessageController@show')->name('message.show');
+    });
+});
 
 Route::prefix('admin')->namespace('Admin')->as('admin.')->group(function () {
     Route::middleware('guest:admin')->group(function () {

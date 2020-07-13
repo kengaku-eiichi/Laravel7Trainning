@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <ul>
+    <li><a href="{{ route('admin.top') }}">管理者TOP</a></li>
     <li><a href="{{ route('admin.user') }}">ユーザ一覧</a></li>
     <li><a href="{{ route('admin.message.create') }}">メッセージ登録</a></li>
     <li><a href="{{ route('admin.message') }}">個別ユーザへのメッセージ</a></li>

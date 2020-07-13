@@ -8,7 +8,7 @@
 
 <body>
     <p>登録が完了しました。</p>
-    <a href="/user">会員画面へ進む</a><!-- ToDo route に変更する -->
+    <a href="{{ route('user.top') }}">会員画面へ進む</a><!-- ToDo route に変更する -->
 </body>
 
 </html>
